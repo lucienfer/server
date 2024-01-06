@@ -4,10 +4,10 @@ use http_body_util::{combinators::BoxBody, BodyExt, Full, Empty};
 use hyper::body::{Bytes, Frame};
 use hyper::server::conn::http1;
 use hyper::service::service_fn;
-use hyper::{body::Body, Request, Response, Method, StatusCode};
+use hyper::{body::Body, Request, Response, Method, StatusCode, Error};
 use hyper_util::rt::TokioIo;
 use tokio::net::TcpListener;
-use std::fs;
+use std::{fs, string};
 
 // async fn hello(_: Request<hyper::body::Incoming>) -> Result<Response<Full<Bytes>>, Infallible> {
 //     println!("test");
@@ -27,7 +27,13 @@ async fn echo(
             Ok(Response::new(full(html)))
         },
         (&Method::POST, "/traiter_mot") => {
-            Ok(Response::new(req.into_body().boxed()))
+            let req_byte = req.collect().await?.to_bytes();
+            let req_str = String::from_utf8(req_byte.to_vec()).unwrap();
+            let parties: Vec<String> = req_str.split('=').map(|s| s.to_string()).collect();
+            let empty_: String = "".to_string();
+            let valeur = if parties.len() > 1 { &parties[1] } else { &empty_ };
+            // Ok(Response::new(req.into_body().boxed()))
+            Ok(Response::new(full(valeur.to_string())))
         },
         // Simply echo the body back to the client.
         (&Method::POST, "/echo") => Ok(Response::new(req.into_body().boxed())),
