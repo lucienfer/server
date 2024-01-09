@@ -9,7 +9,6 @@ use hyper::{Request, Response, Method, StatusCode, Error};
 use hyper_util::rt::TokioIo;
 use tokio::net::TcpListener;
 use std::fs;
-use std::io::{Read, Write};
 
 // async fn hello(_: Request<hyper::body::Incoming>) -> Result<Response<Full<Bytes>>, Infallible> {
 //     println!("test");
@@ -32,6 +31,10 @@ async fn echo(
             let html = fs::read_to_string("index/test.html").expect("Unable to read file");
             Ok(Response::new(full(html)))
         },
+        (&Method::GET, "/wallet") => {
+            let html = fs::read_to_string("build/src/index.html").expect("Unable to read file");
+            Ok(Response::new(full(html)))
+        },
         (&Method::POST, "/authentifier") => {
             let req_byte = req.collect().await?.to_bytes();
             let req_str = String::from_utf8(req_byte.to_vec()).unwrap();
@@ -43,11 +46,11 @@ async fn echo(
             let _ = fs::write("json/user.json", json_user);
             let html = fs::read_to_string("index/authentifier.html").expect("Unable to read file");
             Ok(Response::new(full(html)))
-        }
+        },
         (&Method::GET, "/json/user.json") => {
            let _json = fs::read_to_string("json/user.json").expect("Unable to read file");
             Ok(Response::new(full(_json)))
-        }
+        },
         (&Method::POST, "/traiter_mot") => {
             let req_byte = req.collect().await?.to_bytes();
             let req_str = String::from_utf8(req_byte.to_vec()).unwrap();

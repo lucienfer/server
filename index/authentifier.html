@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Utilisateur</title>
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Page Utilisateur</title>
+		<script src="starknetkit"></script>
+	</head>
+	<body>
 		<h1>Bienvenue, <span id="nom-utilisateur">chargement...</span> pwd: <span id='password'>chargement....</span></h1>
 
-    <script>
-        fetch('http://127.0.0.1:3000/json/user.json')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('nom-utilisateur').textContent = data.name;
-		document.getElementById('password').textContent = data.pwd;
-		console.log(data);
-            })
-            .catch(error => console.error('Erreur lors du chargement des données', error));
-    </script>
-</body>
+		<script>
+		fetch('http://127.0.0.1:3000/json/user.json')
+			.then(response => response.json())
+			.then(data => {
+				document.getElementById('nom-utilisateur').textContent = data.name;
+				document.getElementById('password').textContent = data.pwd;
+				console.log(data);
+			})
+			.catch(error => console.error('Erreur lors du chargement des données', error));
+		</script>
+	</body>
 </html>
