@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #0B1337;
+    overflow: hidden;
+}
+
+/* Style de la barre de navigation */
+.navbar {
+    background: #0B1337;
+    overflow: hidden;
+    color: white;
+    height: 76px;
+    flex-shrink: 0;
+
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 30px;
+    transition: border-bottom 0.3s;
+    border-radius: 2px;
+}
+
+.navbar a:hover {
+    border-bottom: 2px solid #50E7FE;
+    background: #454D73;
+}
+
+/* Style du bouton de connexion */
+.login-button {
+    width: 235px;
+    height: 54px;
+    flex-shrink: 0;
+    float: right;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 20px;
+    background: #3D2470;
+}
+
+.login-button:hover {
+    background: #454D73;
+}
+
+/* Style pour le contenu principal */
+.main-content {
+    padding: 16px;
+}
+
+.img_home {
+    max_width: 50%;
+    width: 773px;
+    height: 730px;
+    margin-bottom: 10%;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.welcome {
+    max_width: 50%;
+    display: flex;
+    width: 521px;
+    height: 95px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #FFF;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-right: 15%;
+    margin-top: 15%;
+    margin-left: 15px;
+}
+
+.StarkGambling {
+        font-size: 67px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.paraph {
+    font-size: 30px;
+    width: 721px;
+    margin-top: 25px;
+}
